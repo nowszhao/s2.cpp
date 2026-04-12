@@ -31,7 +31,7 @@ set(GGML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 if(S2_AUTO_APPLY_LOCAL_PATCHES)
 
 	if(WIN32) #Fixes issue with patch not being available in Windows builds.
-		find_program(S2_PATCH_EXECUTABLE git apply)
+		find_program(S2_PATCH_EXECUTABLE git)
 	else()
 		find_program(S2_PATCH_EXECUTABLE patch)
 	endif()
