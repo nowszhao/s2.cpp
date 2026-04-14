@@ -785,6 +785,10 @@ void SlowARModel::clear_kv_cache() {
     max_seq_len_ = 0;
     n_past_ = 0;
 }
+bool SlowARModel::prefill_fast(const std::vector<int32_t> & flat_tokens, int32_t n_tokens,
+                          int32_t n_threads, StepResult & result) {
+    return eval_cached(flat_tokens, n_tokens, n_threads, result);
+}
 
 bool SlowARModel::prefill(const std::vector<int32_t> & flat_tokens, int32_t n_tokens,
                           int32_t n_threads, StepResult & result) {

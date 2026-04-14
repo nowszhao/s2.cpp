@@ -109,6 +109,14 @@ public:
 
     void clear_kv_cache();
 
+private:
+    bool eval_cached(const std::vector<int32_t> & flat_tokens,
+        int32_t n_tokens, int32_t n_threads,
+        StepResult & result);
+public:
+    bool prefill_fast(const std::vector<int32_t> & flat_tokens, int32_t n_tokens,
+        int32_t n_threads, StepResult & result);
+
     bool prefill(const std::vector<int32_t> & flat_tokens, int32_t n_tokens,
                  int32_t n_threads, StepResult & result);
 
@@ -143,9 +151,6 @@ private:
 
     std::unordered_set<ggml_tensor *> weight_tensor_set_;
 
-    bool eval_cached(const std::vector<int32_t> & flat_tokens,
-                     int32_t n_tokens, int32_t n_threads,
-                     StepResult & result);
 };
 
 }
