@@ -844,7 +844,7 @@ bool Pipeline::synthesize_prompt_codes_locked(const PipelineParams & params, con
     PromptTensor prompt = build_prompt(
         tokenizer(), params.text, params.prompt_text,
         ref_codes,
-        num_codebooks, T_prompt);
+        num_codebooks, T_prompt, params.instruction);
 
     int32_t max_seq_len = prompt.cols + params.gen.max_new_tokens;
     const auto kv_t0 = std::chrono::steady_clock::now();
@@ -982,7 +982,7 @@ bool Pipeline::synthesize_streaming_prompt_codes_locked(const PipelineParams & p
     PromptTensor prompt = build_prompt(
         tokenizer(), params.text, params.prompt_text,
         ref_codes,
-        num_codebooks, T_prompt);
+        num_codebooks, T_prompt, params.instruction);
 
     int32_t max_seq_len = prompt.cols + params.gen.max_new_tokens;
     const auto kv_t0 = std::chrono::steady_clock::now();
